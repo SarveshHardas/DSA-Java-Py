@@ -6,16 +6,8 @@ class Solution {
         }
         int quo = n / 8;
         int rem = n % 8;
-        if(quo == 1){
-            return 8 + (rem*2);
-        }
-        if(quo == 2){
-            return 24 + (rem*3); 
-        }
-        if(quo == 3){
-            return 48 + (rem*4);
-        }
-
-        return n;
+        
+        int ans = 8 * quo * (quo + 1) / 2 + (quo + 1) * rem;
+        return ans;
     }
 }
