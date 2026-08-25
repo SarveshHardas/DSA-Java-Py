@@ -7,13 +7,11 @@ class Solution {
         }
         int i = k;
 
-        while(i <= 1000){
+        while(true){
             if(!set.contains(i)){
                 return i;
             }
             i = i + k;
         }
-
-        return k;
     }
 }
