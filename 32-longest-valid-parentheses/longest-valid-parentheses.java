@@ -3,6 +3,7 @@ class Solution {
         Deque<Integer> stack = new ArrayDeque<>();
         stack.push(-1);
         int best = 0;
+
         for(int i = 0; i < s.length(); i++){
             char ch = s.charAt(i);
 
