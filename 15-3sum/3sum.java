@@ -1,45 +1,39 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        int n = nums.length;
         Arrays.sort(nums);
-        List<List<Integer>> ans = new ArrayList<>();
         
-        for(int i = 0; i < n-2; i++){
-            if(i > 0 && nums[i] == nums[i-1]){
-                continue;
-            }
+        int n = nums.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
+        
+        for(int i = 0; i < n; i++){
+            int j = i+1;
+            int k = n - 1;
 
-            int left = i + 1;
-            int right = n - 1;
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
 
-            while( left < right){
-                long sum = (long) nums[i] + nums[left] + nums[right];
-                
-                if(sum < 0){
-                    left++;
-                } else if(sum > 0){
-                    right--;
-                } else {
-                    List<Integer> triplet = new ArrayList<>();  
-                    triplet.add(nums[i]);
-                    triplet.add(nums[left]);
-                    triplet.add(nums[right]);
-                    ans.add(triplet);
+                if(sum == 0){
+                    List<Integer> trip = new ArrayList<>();
 
-                    while(left < right && nums[left] == nums[left + 1]){
-                        left += 1;
+                    trip.add(nums[i]);
+                    trip.add(nums[j]);
+                    trip.add(nums[k]);
+
+                    if(!set.contains(trip)){
+                        ans.add(trip);
+                        set.add(trip);
                     }
-
-                    while(right > left && nums[right] == nums[right - 1]){
-                        right -= 1;
-                    }
-
-                    left += 1;
-                    right -= 1;
+                    j++;
+                    k--;
+                }else if(sum < 0){
+                    j++;
+                }else{
+                    k--;
                 }
             }
-
         }
+
         return ans;
     }
 }
