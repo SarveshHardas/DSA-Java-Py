@@ -1,32 +1,32 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        String modified = s.replace(" ", "").toLowerCase();
-        if (s == "") {
-            return true;
-        }
+        String mod = s.replace(" ","").toLowerCase();
+        StringBuilder modS = new StringBuilder();
 
-        StringBuilder charArray = new StringBuilder(modified);
-
-        for (int i = 0; i < charArray.length(); i++) {
-            if (!Character.isLetterOrDigit(charArray.charAt(i))){
-                charArray.deleteCharAt(i);
-                i--;
+        for(int i = 0; i < mod.length(); i++){
+            char ch = mod.charAt(i);
+            if(Character.isLetterOrDigit(ch)){
+                modS.append(ch);
             }
         }
+        
+        System.out.println(modS);
 
-        if(charArray.length() < 2){
-            return true;
-        }
+        int i = 0; 
+        int j = modS.length()-1;
 
-        int left = 0;
-        int right = charArray.length() - 1;
-        while(left <= right){
-            if(charArray.charAt(left) != charArray.charAt(right)){
+        while(i < j){
+            char left = modS.charAt(i);
+            char right = modS.charAt(j);
+
+            if(left != right){
                 return false;
             }
-            left++;
-            right--;
+
+            i++;
+            j--;
         }
+
 
         return true;
     }
