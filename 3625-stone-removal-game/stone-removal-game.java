@@ -1,6 +1,5 @@
 class Solution {
     public boolean canAliceWin(int n) {
-        int turn = 0;
         int removal = 10;
 
         while(n >= removal){
